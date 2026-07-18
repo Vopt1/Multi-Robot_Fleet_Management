@@ -6,20 +6,8 @@
             <update_rate>10</update_rate>
             <always_on>1</always_on>
             <visualize>1</visualize>
-            <topic>imu</topic>
+            <topic>/model/ROBOT_NAME_PLACEHOLDER/imu</topic>
         </sensor>
-    </gazebo>
-
-    <gazebo>
-        <plugin filename="gz-sim-triggered-publisher-system"
-                name="gz::sim::systems::TriggeredPublisher">
-            <input type="gz.msgs.Int32" topic="/keyboard/keypress">
-                <match field="data">16777235</match>
-            </input>
-            <output type="gz.msgs.Twist" topic="/cmd_vel">
-                linear: {x: 0.5}, angular: {z: 0.0}
-            </output>
-        </plugin>    
     </gazebo>
 
     <gazebo>
@@ -34,9 +22,9 @@
 
             <max_linear_acceleration>1.0</max_linear_acceleration>
 
-            <topic>cmd_vel</topic>
-            <odom_topic>odom</odom_topic>
-            <tf_topic>tf</tf_topic>
+            <topic>/model/ROBOT_NAME_PLACEHOLDER/cmd_vel</topic>
+            <odom_topic>/model/ROBOT_NAME_PLACEHOLDER/odom</odom_topic>
+            <tf_topic>/model/ROBOT_NAME_PLACEHOLDER/tf</tf_topic>
 
             <frame_id>odom</frame_id>
             <child_frame_id>base_link</child_frame_id>
@@ -55,8 +43,8 @@
             <always_on>true</always_on>
             <visualize>true</visualize>
             <update_rate>10</update_rate>
-            <topic>scan</topic>
-            <gz_frame_id>laser_frame</gz_frame_id>
+            <topic>/model/ROBOT_NAME_PLACEHOLDER/scan</topic>
+            <gz_frame_id>ROBOT_NAME_PLACEHOLDER/laser_frame</gz_frame_id>
             <lidar>
                 <scan>
                     <horizontal>
@@ -78,7 +66,7 @@
         <plugin
             filename="gz-sim-joint-state-publisher-system"
             name="gz::sim::systems::JointStatePublisher">
-                <topic>joint_states</topic>
+                <topic>/model/ROBOT_NAME_PLACEHOLDER/joint_states</topic>
         </plugin>
     </gazebo>
 

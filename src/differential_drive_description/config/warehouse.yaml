@@ -11,7 +11,7 @@ robots:
     y: -1.0
     z: 0.1
   - name: "robot3"
-    namespace: "alpha_bot"  # The name and namespace don't have to match!
+    namespace: "robot3"
     x: 2.0
     y: 0.0
     z: 0.1
