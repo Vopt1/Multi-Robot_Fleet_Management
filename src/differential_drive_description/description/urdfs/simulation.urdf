@@ -26,11 +26,15 @@
             <odom_topic>/model/ROBOT_NAME_PLACEHOLDER/odom</odom_topic>
             <tf_topic>/model/ROBOT_NAME_PLACEHOLDER/tf</tf_topic>
 
-            <frame_id>odom</frame_id>
-            <child_frame_id>base_link</child_frame_id>
+            <frame_id>ROBOT_NAME_PLACEHOLDER/odom</frame_id>
+            <child_frame_id>ROBOT_NAME_PLACEHOLDER/base_link</child_frame_id>
 
             <publish_wheel_tf>true</publish_wheel_tf>
             <publish_wheel_joint_state>true</publish_wheel_joint_state>
+
+            <covariance_x>0.001</covariance_x>
+            <covariance_y>0.001</covariance_y>
+            <covariance_yaw>0.01</covariance_yaw>
         </plugin>
     </gazebo>
     <gazebo reference="caster_wheel">
@@ -41,7 +45,7 @@
     <gazebo reference="laser_frame">
         <sensor name="lidar" type="gpu_lidar">
             <always_on>true</always_on>
-            <visualize>true</visualize>
+            <visualize>false</visualize>
             <update_rate>10</update_rate>
             <topic>/model/ROBOT_NAME_PLACEHOLDER/scan</topic>
             <gz_frame_id>ROBOT_NAME_PLACEHOLDER/laser_frame</gz_frame_id>
