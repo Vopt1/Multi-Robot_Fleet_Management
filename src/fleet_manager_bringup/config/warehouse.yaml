@@ -1,0 +1,17 @@
+# my_robot_bringup/config/robots.yaml
+robots:
+  - name: "robot1"
+    namespace: "robot1"
+    x: 0.0
+    y: 1.0
+    z: 0.1
+  - name: "robot2"
+    namespace: "robot2"
+    x: 0.0
+    y: -1.0
+    z: 0.1
+  - name: "robot3"
+    namespace: "robot3"
+    x: 2.0
+    y: 0.0
+    z: 0.1

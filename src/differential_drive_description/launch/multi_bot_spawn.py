@@ -15,7 +15,6 @@ def generate_launch_description():
     description_raw = xacro.process_file(urdf_file).toxml()
     config_file_path = os.path.join(pkg_path, 'config/warehouse.yaml')
     ekf_config_file = PathJoinSubstitution([example_pkg_path, 'config', 'ekf.yaml'])
-    nav2_params_file = PathJoinSubstitution([example_pkg_path, 'config', 'nav2.yaml'])
 
     try:
         with open(config_file_path, 'r', encoding='utf-8') as file:
@@ -98,26 +97,11 @@ def generate_launch_description():
             ]
         )
 
-        amcl_node = Node(
-            package='nav2_amcl',
-            executable='amcl',
-            namespace=ns,
-            name='AMCL_localization',
-            parameters=[
-                nav2_params_file,
-                {
-                    'use_sim_time':True,
-                    'base_frame_id':f'{ns}/base_link',
-                    'odom_frame_id':f'{ns}/odom',
-                }
-            ]
-        )
 
         ld.add_action(spawner_node)
         ld.add_action(robot_state_publisher)
         ld.add_action(gz_bridge)
         ld.add_action(ekf_node)
-        ld.add_action(amcl_node)
 
     return ld
  
