@@ -10,6 +10,8 @@
         </sensor>
     </gazebo>
 
+    
+
     <gazebo>
         <plugin 
         filename="gz-sim-diff-drive-system"
@@ -17,7 +19,7 @@
             <left_joint>back_left_wheel_joint</left_joint>
             <right_joint>back_right_wheel_joint</right_joint>
 
-            <wheel_separation>${body_y}</wheel_separation>
+            <wheel_separation>${wheel_separation}</wheel_separation>
             <wheel_radius>${wheel_r}</wheel_radius>
 
             <max_linear_acceleration>1.0</max_linear_acceleration>
@@ -38,8 +40,8 @@
         </plugin>
     </gazebo>
     <gazebo reference="caster_wheel">
-        <mu1>0.01</mu1>
-        <mu2>0.01</mu2>
+        <mu1>0.001</mu1>
+        <mu2>0.001</mu2>
     </gazebo>
 
     <gazebo reference="laser_frame">

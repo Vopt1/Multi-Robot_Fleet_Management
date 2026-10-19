@@ -56,7 +56,7 @@ def launch_setup(context, *args, **kwargs):
             f'/model/{ns_str}/cmd_vel@geometry_msgs/msg/Twist]gz.msgs.Twist',
             f'/model/{ns_str}/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
             f'/model/{ns_str}/joint_states@sensor_msgs/msg/JointState[gz.msgs.Model',
-            f'/model/{ns_str}/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
+            # f'/model/{ns_str}/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
             f'/model/{ns_str}/odom@nav_msgs/msg/Odometry[gz.msgs.Odometry'
         ],
         remappings=[
@@ -64,7 +64,7 @@ def launch_setup(context, *args, **kwargs):
             (f'/model/{ns_str}/cmd_vel', f'/{ns_str}/cmd_vel'),
             (f'/model/{ns_str}/scan', f'/{ns_str}/scan'),
             (f'/model/{ns_str}/joint_states', f'/{ns_str}/joint_states'),
-            (f'/model/{ns_str}/tf', f'/tf'),
+            # (f'/model/{ns_str}/tf', f'/tf'),
             (f'/model/{ns_str}/odom', f'/{ns_str}/wheel_odom'),
         ]
     )
@@ -73,8 +73,16 @@ def launch_setup(context, *args, **kwargs):
         package='robot_localization',
         executable='ekf_node',
         namespace=ns_str,
-        name='ekf_filter_node',
-        parameters=[ekf_config_path, {'use_sim_time': True}]
+        name='ekf_node',
+        parameters=[ekf_config_path, {
+            'use_sim_time': True,
+            'odom_frame': f'{ns_str}/odom',
+            'base_link_frame': f'{ns_str}/base_link',
+            'imu0': 'imu',
+            'odom0': 'wheel_odom',
+            'world_frame': f'{ns_str}/odom',
+            'map_frame': 'map',
+            }]
     )
 
     return [

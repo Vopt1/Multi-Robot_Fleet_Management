@@ -9,6 +9,7 @@
     <xacro:property name="body_mass" value="2.0" />
     <xacro:property name="wheel_r" value="0.05" />
     <xacro:property name="wheel_l" value="0.05" />
+    <xacro:property name="wheel_separation" value="${body_y + wheel_l}" />
 
     <xacro:macro name="wheel" params="name x y z">
         <link name="${name}_wheel">
@@ -74,13 +75,11 @@
     <joint name="base_link_to_body" type="fixed">
         <parent link="base_link" />
         <child link="body" />
-        <origin xyz="0 0 ${body_z/2 + wheel_r}" rpy="0 0 0" />
-        <axis xyz="1 0 0" />
-        <limit lower="-1.0" upper="1.0" effort="100" velocity="100" />
+        <origin xyz="0.15 0 ${body_z/2 + wheel_r}" rpy="0 0 0" />
     </joint>
 
-    <xacro:wheel name="back_right" x="-0.15" y="0.175" z="-0.075" />
-    <xacro:wheel name="back_left" x="-0.15" y="-0.175" z="-0.075" />
+    <xacro:wheel name="back_right" x="-0.15" y="${-(body_y / 2 + wheel_l/2)}" z="-0.075" />
+    <xacro:wheel name="back_left" x="-0.15" y="${(body_y / 2 + wheel_l/2)}" z="-0.075" />
 
     <link name="caster_wheel">
         <visual>
